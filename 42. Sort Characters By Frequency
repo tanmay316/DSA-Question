@@ -1,0 +1,31 @@
+class Solution {
+public:
+    string frequencySort(string s) {
+        int n = s.length();
+        vector<pair<int, char>> charCount;
+
+        // Count occurrences of each character
+        vector<int> count(256, 0);
+        for (char c : s) {
+            count[c]++;
+        }
+
+        // Create a vector of pairs (count, character)
+        for (int i = 0; i < 256; i++) {
+            if (count[i] > 0) {
+                charCount.push_back({count[i], static_cast<char>(i)});
+            }
+        }
+
+        // Sort the vector based on character count in descending order
+        sort(charCount.rbegin(), charCount.rend());
+
+        // Build the result string based on the sorted counts
+        string result = "";
+        for (auto& pair : charCount) {
+            result += string(pair.first, pair.second);
+        }
+
+        return result;
+    }
+};
