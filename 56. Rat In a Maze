@@ -1,0 +1,85 @@
+void solve(vector<vector<int>> &mat,int row, int col, string &s, vector<string> &ans){
+
+ 
+
+    
+
+    if(row <0 || col <0 || row >=mat.size() || col >=mat.size() || mat[row][col]==0 || mat[row][col]==-1){
+
+        return;
+
+    }
+
+ 
+
+    if(row==mat.size()-1 && col==mat.size()-1){
+
+        ans.push_back(s);
+
+        return ;
+
+    }
+
+ 
+
+    mat[row][col]=-1;
+
+    s += 'U';
+
+    solve(mat,row-1,col,s,ans);     //up
+
+    s.pop_back();
+
+    s += 'R';
+
+    solve(mat,row,col+1,s,ans);     //right
+
+    s.pop_back();
+
+    s += 'L';
+
+    solve(mat,row,col-1,s,ans);   //left
+
+    s.pop_back();
+
+    s += 'D';
+
+    solve(mat,row+1,col,s,ans);    // down
+
+    s.pop_back();
+
+ 
+
+    mat[row][col]=1;
+
+    
+
+ 
+
+}
+
+vector<string> ratMaze(vector<vector<int>> &mat) {
+
+    
+
+    string s="";
+
+    vector<string> ans;
+
+    solve(mat,0,0,s,ans);
+
+     
+
+     if(ans.size()==0){
+
+         ans.push_back("-1");
+
+         return ans;
+
+     }
+
+ 
+
+     return ans;
+
+}
