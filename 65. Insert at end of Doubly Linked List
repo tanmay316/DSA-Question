@@ -1,0 +1,13 @@
+Node * insertAtTail(Node *head, int k) {
+    Node* temp=new Node(k);
+    if(head==NULL){
+        return temp;
+    }
+    Node*curr=head;
+    while(curr->next!=NULL){
+        curr=curr->next;
+    }
+    curr->next=temp;
+    temp->prev=curr;
+    curr=temp;
+    return head;
