@@ -1,0 +1,10 @@
+ListNode* middleNode(ListNode* head) {
+        ListNode* mid=head;
+        ListNode* last=head;
+
+        while(last!=nullptr && last->next != nullptr){
+            mid = mid->next;
+            last = last->next->next;
+        }
+        return mid;
+    }
