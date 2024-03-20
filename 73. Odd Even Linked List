@@ -1,0 +1,19 @@
+class Solution {
+public:
+    ListNode* oddEvenList(ListNode* head) {
+        if(!head || !head->next || !head->next->next) return head;
+        
+        ListNode *even = head;
+        ListNode *odd = head->next;
+        ListNode *even_start = head->next;
+        
+        while(even->next && odd->next){
+            even->next = odd->next; //Connect all odds
+            odd->next = even->next->next;  //Connect all evens
+            odd = odd->next;
+            even = even->next;
+        }
+        even->next = even_start;   //Place the first even node after the last odd node.
+        return head; 
+    }
+};
