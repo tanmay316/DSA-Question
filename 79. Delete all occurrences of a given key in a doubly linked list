@@ -1,0 +1,23 @@
+Node * deleteAllOccurrences(Node* head, int k) {
+    // Write your code here
+    Node * temp=head;
+    while(temp!=NULL){
+        if(temp->data==k){
+
+            if(temp==head){
+                head=temp->next;
+            }
+            Node * prevnode=temp->prev;
+            Node * nextnode=temp->next;
+
+            if(nextnode) nextnode->prev=prevnode;
+            if(prevnode) prevnode->next=nextnode;
+            free(temp);
+            temp=nextnode;
+        }
+        else{
+            temp=temp->next;
+        }
+    }
+    return head;
+}
