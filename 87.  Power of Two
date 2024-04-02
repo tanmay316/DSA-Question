@@ -1,0 +1,6 @@
+bool isPowerOfTwo(int n)
+{	
+    // Write your code here.
+    int temp=!(n&(n-1));
+    return temp;    
+}
