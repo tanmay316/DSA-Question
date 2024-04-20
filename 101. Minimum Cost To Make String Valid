@@ -1,0 +1,32 @@
+#include <bits/stdc++.h> 
+int findMinimumCost(string str) {
+  // Write your code here
+  stack<char> st;
+  int siz = str.size();
+  if(siz%2 == 1) return -1;
+
+  for(int i=0; i<siz; i++){
+    if(str[i] == '{'){
+      st.push(str[i]);
+    }
+    else{
+      if (!st.empty() && st.top() == '{' ) {
+          st.pop();
+        }
+      else
+          st.push(str[i]);
+
+    }
+    
+  }
+  int op = 1, cl = 1;
+  while(!st.empty()){
+    if(st.top() == '{'){
+      op++;
+    }
+    else cl++;
+    st.pop();
+  }
+
+  return (op/2) + (cl/2);
+}
